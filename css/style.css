@@ -1,0 +1,11 @@
+
+.graph_wrapper {
+    border: 1px solid #000;
+    margin: 4px;
+    width: 600px;
+    height: 300px;
+}
+
+.active {
+    font-weight: bold;
+}

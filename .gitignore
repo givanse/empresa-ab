@@ -2,3 +2,12 @@
 
 data/*.csv
 !data/test.csv
+
+data/*.json
+
+css/normalize.css
+js/libs/ember-1.4.0.js
+js/libs/handlebars-1.1.2.js
+js/libs/jquery-1.10.2.js
+js/libs/raphael.js
+

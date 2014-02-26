@@ -9,17 +9,24 @@ fi
 
 file=$1
 output_file=$file'.json'
+tmp_file='file.tmp'
+
 echo 'Formating '$file' to '$output_file
 
-tmp_file='file.tmp'
-# remove headers line
+# remove CSV headers
 tail -n +2 $file > $tmp_file
 
-echo "{" > $output_file
+echo "[" > $output_file
 
-sed -re "s/(.*),(.*),(.*),(.*),(.*),(.*),(.*)/{\"date\":\"\1\", \"open\":\"\2\", \"high\":\"\3\", \"low\":\"\4\", \"close\":\"\5\", \"vol\":\"\6\", \"adjc\":\"\7\"}/" $tmp_file >> $output_file
+# process each record
+sed -re "s/(.*),(.*),(.*),(.*),(.*),(.*),(.*)/{\"date\":\"\1\", \"open\":\"\2\", \"high\":\"\3\", \"low\":\"\4\", \"close\":\"\5\", \"vol\":\"\6\", \"adjc\":\"\7\"},/" $tmp_file >> $output_file
 
-echo "}" >> $output_file
+# handle last comma
+echo "{}" >> $output_file
+
+echo "]" >> $output_file
+
+# clean up
 rm $tmp_file
 
 wc -l $file
