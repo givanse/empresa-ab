@@ -2,10 +2,14 @@
 
 set -e
 
-# http://ar.finanzas.yahoo.com/q/hp?s=HOMEX.MX
-wget http://ichart.finance.yahoo.com/table.csv?s=HOMEX.MX&d=1&e=24&f=2014&g=d&a=6&b=19&c=2004&ignore=.csv
+download_file='homex.csv'
 
-mv table.csv\?s\=HOMEX.MX homex.csv
+# http://ar.finanzas.yahoo.com/q/hp?s=HOMEX.MX
+download_url='http://ichart.finance.yahoo.com/table.csv?s=HOMEX.MX&d=1&e=24&f=2014&g=d&a=6&b=19&c=2004&ignore=.csv'
+
+wget -O $download_file $download_url
+
+./format.sh "$download_file"
 
 exit
 #EOF
